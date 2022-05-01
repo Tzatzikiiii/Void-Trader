@@ -1,0 +1,6 @@
+[
+    {
+        "name": "ARM GBA Toolchain",
+        "toolchainFile": "C:\\tools\\gba-toolchain\\arm-gba-toolchain.cmake"
+    }
+]

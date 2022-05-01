@@ -1,0 +1,36 @@
+{
+    "configurations": [
+
+        {
+            "name": "(gdb) Starten",
+            "type": "cppdbg",
+            "request": "launch",
+            "targetArchitecture": "arm",
+            "program": "${command:cmake.buildDirectory}/void-trader.elf",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${command:cmake.buildDirectory}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerServerAddress": "localhost:2345",
+            "windows": {
+                "miDebuggerPath": "${env:LOCALAPPDATA}/arm-gnu-toolchain/bin/arm-none-eabi-gdb.exe",
+                "setupCommands": [
+                    {
+                        "text": "shell start /b \"\" \"C:/tools/mGBA/mGBA.exe\" -g \"${command:cmake.buildDirectory}/void-trader.elf\"" //path to mGBA
+                    }
+                ]
+            },
+            "linux": {
+                "miDebuggerPath": "~/arm-gnu-toolchain/bin/arm-none-eabi-gdb",
+                "setupCommands": [
+                    {
+                        "text": "shell \"/usr/local/bin/mgba-qt\" -g \"${command:cmake.buildDirectory}/void-trader.elf\" &" //path to mGBA
+                    }
+                ]
+            }
+        }
+    
+    ]
+}
