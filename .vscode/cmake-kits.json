@@ -1,6 +1,11 @@
 [
     {
-        "name": "ARM GBA Toolchain",
+        "name": "ARM GBA Toolchain Windows",
         "toolchainFile": "C:\\tools\\gba-toolchain\\arm-gba-toolchain.cmake"
+    }
+    ,
+    {
+        "name": "ARM GBA Toolchain Linux",
+        "toolchainFile": "~/tools/gba-toolchain/arm-gba-toolchain.cmake"
     }
 ]
