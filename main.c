@@ -1,16 +1,20 @@
 #include <stdio.h>
+#include <tonc.h>
 
 int main()
 {
-    *(unsigned int*)0x04000000 = 0x0403;
+     REG_DISPCNT = DCNT_MODE0 | DCNT_BG0;
 
-    ((unsigned short*)0x06000000)[0*240] = 0x001F;
-    ((unsigned short*)0x06000000)[136+80*240] = 0x03E0;
-    ((unsigned short*)0x06000000)[120+96*240] = 0x7C00;
+    tte_init_chr4c_default(0, BG_CBB(0) | BG_SBB(31));
+    tte_set_pos(92, 68);
+    tte_write("Hello World!");
 
-    printf("Hello World");
+    irq_init(NULL);
+    irq_enable(II_VBLANK);
 
-    while(1);
+    while (1) {
+        VBlankIntrWait();
+    }
 
     return 0;
 }

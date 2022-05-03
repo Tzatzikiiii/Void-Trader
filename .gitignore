@@ -1,2 +1,10 @@
 # build directory
 build/
+
+# working image directory
+imgWorkingDir/
+
+#aseprite files
+*.ase
+#gimp files
+*.xcf
