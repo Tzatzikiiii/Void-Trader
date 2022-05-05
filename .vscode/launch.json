@@ -23,10 +23,10 @@
                 ]
             },
             "linux": {
-                "miDebuggerPath": "~/arm-gnu-toolchain/bin/arm-none-eabi-gdb",
+                "miDebuggerPath": "${env:HOME}/arm-gnu-toolchain/bin/arm-none-eabi-gdb",
                 "setupCommands": [
                     {
-                        "text": "shell \"/usr/local/bin/mgba-qt\" -g \"${command:cmake.buildDirectory}/void-trader.elf\" &" //path to mGBA
+                        "text": "shell \"/bin/mgba-qt\" -g \"${command:cmake.buildDirectory}/void-trader.elf\" &" //path to mGBA
                     }
                 ]
             }
