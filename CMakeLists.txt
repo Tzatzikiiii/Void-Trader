@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 3.18)
 
 project("Void Trader" C)
 
-add_executable(void-trader main.c)
+add_executable(void-trader source/main.c include/splash.h)
+target_include_directories(void-trader PRIVATE include)
+
+
 set_target_properties(void-trader PROPERTIES SUFFIX ".elf")
+
 
 gba_add_library_subdirectory(rom tonc seven)
 
