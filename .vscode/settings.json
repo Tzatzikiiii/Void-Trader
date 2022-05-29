@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "random.h": "c",
+        "tonc.h": "c",
+        "tonc_tte.h": "c"
+    }
+}
