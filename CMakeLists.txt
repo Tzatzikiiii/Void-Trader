@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 
 project("Void Trader" C)
 
-add_executable(void-trader source/main.c include/splash.h)
+add_executable(void-trader source/main.c source/splash.c include/splash.h)
 target_include_directories(void-trader PRIVATE include)
 
 

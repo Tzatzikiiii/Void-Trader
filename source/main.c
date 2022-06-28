@@ -5,19 +5,24 @@
 
 int main()
 {
-    REG_DISPCNT = DCNT_MODE0 | DCNT_BG0;
+   tonccpy(m3_mem, splashBitmap, splashBitmapLen);
 
-    randSetSeed(5);
-    randNext();
-    randNext();
-    randNext();
-    u32 ranVal = randNext();
-    char str[10] = {0};
-    itoa(ranVal, str, 10);
+    // REG_BG0CNT = BG_CBB(0) | BG_4BPP | BG_SBB(30) | BG_REG_64x32;
+    // tte_init_se_default(1, BG_CBB(1) | BG_SBB(24));
+    
+    REG_DISPCNT= DCNT_MODE3 | DCNT_BG2;
+    
+    // randSetSeed(REG_DISPSTAT);
+    // randNext();
+    // randNext();
+    // randNext();
+    // u32 ranVal = randNext();
+    // char str[10] = {0};
+    // itoa(ranVal, str, 10);
 
-    tte_init_chr4c_default(0, BG_CBB(0) | BG_SBB(31));
-    tte_set_pos(92, 68);
-    tte_write(str);
+    // tte_init_chr4c_default(0, BG_CBB(0) | BG_SBB(31));
+    // tte_set_pos(92, 68);
+    // tte_write(str);
 
     irq_init(NULL);
     irq_enable(II_VBLANK);
