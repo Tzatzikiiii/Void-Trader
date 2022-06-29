@@ -11,7 +11,7 @@
             "stopAtEntry": false,
             "cwd": "${command:cmake.buildDirectory}",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerServerAddress": "localhost:2345",
             "windows": {
