@@ -3,6 +3,7 @@
         "random.h": "c",
         "tonc.h": "c",
         "tonc_tte.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "commodity.h": "c"
     }
 }

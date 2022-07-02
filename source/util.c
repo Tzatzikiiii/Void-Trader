@@ -6,8 +6,8 @@
 #include "util.h"
 // ------------------------------------------------------------- includes
 
-const char vowels[6] = {'a', 'e', 'i', 'o', 'u', 'y'}; // y is treated as a vowel
-const char consonants[20] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'};
+const char VOWELS[6] = {'a', 'e', 'i', 'o', 'u', 'y'}; // y is treated as a vowel
+const char CONSONANTS[20] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'};
 
 inline void util_setSeed(u32 newSeed) {
     randSetSeed(newSeed);
@@ -28,22 +28,20 @@ inline bool util_getRandomBool() // only somwhat random but who cares
 
 static char util_getRandomVowel()
 {   
-    return vowels[(randNext() % 6)];
+    return VOWELS[(randNext() % 6)];
 }
 
 static char util_getRandomConsonant()
 {
-    return consonants[(randNext() % 20)];
+    return CONSONANTS[(randNext() % 20)];
 }
 
 void util_insertRandomName(char nameArr[], int arrLen)
 {
-
     Letter letters[arrLen]; // tracks letters and their types.
     int typeCheck; // used to determine number of consecutive vowels/consonants
     bool ranBool; // coin flip variable
 
-    // TODO optimisation
     for (int arrIterator = 0; arrIterator < arrLen; arrIterator++)
     {
         typeCheck = 0;
