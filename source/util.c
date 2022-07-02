@@ -1,7 +1,5 @@
-#include <stdio.h>
 #include <stdbool.h>
 #include <tonc.h>
-#include <stdbool.h>
 
 #include <seven/util/random.h>
 
@@ -11,10 +9,20 @@
 const char vowels[6] = {'a', 'e', 'i', 'o', 'u', 'y'}; // y is treated as a vowel
 const char consonants[20] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'};
 
-inline bool util_getRandomBool()
+inline void util_setSeed(u32 newSeed) {
+    randSetSeed(newSeed);
+}
+
+inline u32 util_getRandomInRange(u32 min, u32 max) {
+    u32 ranNum = randNext();
+    ranNum &= 0xff000000; // take only the upper 8 bits
+    ranNum >> 24; // shift upper 8 bits to bottom
+    return (ranNum % (max - min)) + min; // range difference + minimmum
+}
+
+inline bool util_getRandomBool() // only somwhat random but who cares
 {
     u32 randomNum = randNext(); // generate random number
-    randomNum /= 100; // look at 3rd from the right
     return (randomNum % 2 == 0); // return if even
 }
 
@@ -32,8 +40,8 @@ void util_insertRandomName(char nameArr[], int arrLen)
 {
 
     Letter letters[arrLen]; // tracks letters and their types.
-    int typeCheck;
-    bool ranBool;
+    int typeCheck; // used to determine number of consecutive vowels/consonants
+    bool ranBool; // coin flip variable
 
     // TODO optimisation
     for (int arrIterator = 0; arrIterator < arrLen; arrIterator++)
@@ -79,7 +87,7 @@ void util_insertRandomName(char nameArr[], int arrLen)
 
     for (int copyIterator = 0; copyIterator < arrLen; copyIterator++)
     {
-        nameArr[copyIterator] = letters[copyIterator].character;
+        nameArr[copyIterator] = letters[copyIterator].character; // copy each letter into the original array
     }
     return;
 }
@@ -88,6 +96,6 @@ inline void util_waitSeconds(unsigned int sec) // wait for specified amount of s
 {
     for (int frameCount = 0; frameCount < sec * 60; frameCount++) // seconds * FPS = total amount of frames waited
     {
-        VBlankIntrWait(); // waits for VBlank -> thus 1 frame per iteration
+        VBlankIntrWait(); // waits for VBlank -> thus, 1 frame per iteration
     }
 }

@@ -1,8 +1,7 @@
 #include <tonc.h>
-#include <seven/util/random.h>
 #include <stdbool.h>
 
-
+#include "scene.h"
 #include "util.h"
 
 // img
@@ -26,8 +25,8 @@ void scene_showSplash()
         key_poll();
 
         if (key_is_down(KEY_ANY))
-        {
-            randSetSeed(REG_TM2D); // get seed from Timer register 2
+        {   
+            util_setSeed(REG_TM2D); // set seed to value of timer register 2
             M3_CLEAR();            // Clear VRAM
             return;                // end splash
         }
