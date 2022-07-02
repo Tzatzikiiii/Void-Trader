@@ -8,10 +8,8 @@ typedef struct
 } Letter;
 
 bool util_getRandomBool();
-void util_insertRandomName(char nameArr[], int arrLen);
-char util_getRandomVowel();
-char util_getRandomConsonant();
-
 void util_waitSeconds(unsigned int sec);
+void util_insertRandomName(char nameArr[], int arrLen);
+
 
 #endif
