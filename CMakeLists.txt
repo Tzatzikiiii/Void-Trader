@@ -21,11 +21,13 @@ void-trader
     
     #img
         #splash
-        source/splash.c include/splash.h
+        source/img/splash.c include/img/splash.h
+        #splash with prompt
+        source/img/splash_prompt.c include/img/splash_prompt.h
 )
 
 
-target_include_directories(void-trader PRIVATE include)
+target_include_directories(void-trader PRIVATE include include/img)
 
 set_target_properties(void-trader PROPERTIES SUFFIX ".elf")
 

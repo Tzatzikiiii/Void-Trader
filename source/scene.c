@@ -7,6 +7,7 @@
 
 // img
 #include "splash.h"
+#include "splash_prompt.h"
 // ------------------------------------------------------------- includes
 
 void scene_showSplash()
@@ -16,10 +17,7 @@ void scene_showSplash()
 
     util_waitSeconds(2);
 
-    tte_init_bmp(3, NULL, NULL); // VRAM Mode 4, default font (NULL), default renderer (NULL)
-    tte_set_color(0, CLR_WHITE); // White text
-    tte_set_pos(60, 145);
-    tte_write("PRESS ANY KEY TO START"); // prompt user for key input //TODO replace with bitmap
+    tonccpy(m3_mem, splash_promptBitmap, splash_promptBitmapLen);
 
     while (true)
     {
