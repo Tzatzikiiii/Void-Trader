@@ -1,14 +1,19 @@
 #include <tonc.h>
+
 #include "scene.h"
+#include "station.h"
+#include "util.h"
+// ------------------------------------------------------------- includes
 
 void Game_gameLoop()
 {
-    REG_TM2CNT = (TM_ENABLE); // enable timer 3
-    // TODO 2 second delay before prompt shows
+    REG_TM2CNT = TM_ENABLE | TM_FREQ_1; // enable timer 3 and set frequency to once per cycle
 
     // scenes
-    scene_showSplash();
-    scene_gameView();
+    scene_showSplash();      // splash screen
+    REG_TM2CNT ^= TM_ENABLE; // disable timer
+
+    scene_gameView();          // game
 
     Game_gameLoop(); // loop around
 }
