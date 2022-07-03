@@ -3,6 +3,7 @@
 
 #include "scene.h"
 #include "util.h"
+#include "station.h"
 
 // img
 #include "splash.h"
@@ -27,7 +28,7 @@ void scene_showSplash()
 
         if (key_is_down(KEY_ANY))
         {   
-            util_setSeed(REG_TM2D); // set seed to value of timer register 3
+            util_setSeed(REG_TM2D); // set RNG seed to value of timer register 3
             M3_CLEAR();            // Clear VRAM
             return;                // end splash
         }
@@ -42,9 +43,14 @@ void scene_gameView()
     while (true)
     {
         VBlankIntrWait();
+        // TODO delete debug
         tte_set_pos(0, 0);
         tte_write("gameView:");
     }
+
+    // TODO give player options: Map, choose and jump to next Destination, Buy & Sell, Repair + Refuel
+    // jump to next Destination
+    // if (station_)
 }
 
 void scene_mapView() // TODO implement map

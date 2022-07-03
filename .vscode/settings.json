@@ -4,6 +4,7 @@
         "tonc.h": "c",
         "tonc_tte.h": "c",
         "stdio.h": "c",
-        "commodity.h": "c"
+        "commodity.h": "c",
+        "typeinfo": "c"
     }
 }
