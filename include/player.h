@@ -19,8 +19,11 @@ extern const u32 MAX_SHIP_FUEL;
 extern const u32 STARTING_BALANCE;
 
 void player_initPlayer(Ship *newPlayerVessel, Station stationArr[]);
-bool player_addCargo(Ship *playerVessel, Stock cargo);
-void player_fuelShip(Ship *newPlayerVessel);
+bool player_addCargo(Ship *playerVessel, Stock addedCargo);
+bool player_removeCargo(Ship *playerVessel, Stock removedCargo);
+void player_payPlayer(Ship *player, u32 amount);
+bool player_chargePlayer(Ship *player, u32 amount);
+void player_fuelShip(Ship *playerVessel);
 bool player_moveShip(Ship *playerVessel, Station target);
 
 #endif

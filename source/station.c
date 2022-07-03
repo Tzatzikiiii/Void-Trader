@@ -21,7 +21,7 @@ static void station_fillInfo(Station *station) // generates random name, commodi
 {
     util_insertRandomName(station->name, 8); // insert a random name with a max length of 8 chars
 
-    station->hasPirates = (util_getRandomBool && util_getRandomBool); // two coinflips = 25% chance -> every 4th station will have chance of pirate encounter
+    station->hasPirates = (util_getRandomBool && util_getRandomBool); // two coinflips = 25% chance. So every ~ 4th station will have chance of pirate encounter
     if (station->hasPirates)
     {
         station->chancePirateEncounter = util_getRandomInRange(PIRATES_MIN_CHANCE, PIRATES_MAX_CHANCE); // pick chance from PIRATES_MIN_CHANCE to PIRATE_MAX_CHANCE
@@ -99,4 +99,7 @@ inline int station_returnFuelCostTo(Station current, Station target)
     xDiff *= xDiff;
     yDiff *= yDiff;
     return (xDiff + yDiff); // pythogoras without the square root, to punish long jumps 
+    //TODO dumb as fuck, change
 }
+
+// void TODO write buy/sell methods
