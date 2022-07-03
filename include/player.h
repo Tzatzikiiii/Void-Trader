@@ -12,6 +12,8 @@ typedef struct ship
     Stock cargoHold[39]; 
     // predefined size since amount of commodity types is known (NUM_COMMODITY_TYPES)
     // bad practice but: i ain't fuck with no malloc()
+
+    // ADD Ship health that could be reduced by attacks and replenished at stations
 } Ship;
 
 extern const u32 MAX_SHIP_SPACE;

@@ -6,7 +6,7 @@ typedef struct commodity
     u8 ID; // 8bit since commodity ID won't even surpass 100
     char *name;  // length 13 since longest name
     bool isIllegal; // legality status
-    int price;      // standard price
+    int price;      // unit price
 } Commodity;
 
 typedef struct stock
