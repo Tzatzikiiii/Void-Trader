@@ -42,16 +42,24 @@ void scene_gameView()
     tte_init_bmp(3, NULL, NULL);         // text engine setup: VRAM Mode 4, default font (NULL), default renderer (NULL)
 
     Station stationArr[MAX_STATION_NUM]; // define the station array
-    station_initStationArr(stationArr);
+    station_initStationArr(stationArr); // initialize station array
     Ship playerVessel; // define the playerVessel
-    player_initPlayer(&playerVessel, stationArr);
+    player_initPlayer(&playerVessel, stationArr); // initialize player vessel
+
+    //TODO DELETE debug
+    char nameTest[8];
+    util_insertRandomName(nameTest, 8);
 
     while (true)
     {
         VBlankIntrWait();
-        // TODO delete debug
         tte_set_pos(0, 0);
-        // tte_write();
+        // tte_write("yeet");
+        tte_write(playerVessel.currentPos.name);
+        tte_set_pos(5, 120);
+        tte_write(stationArr[0].name);
+        tte_set_pos(130, 120);
+        tte_write(nameTest);
         m3_rect(5, 120, 6, 121, CLR_LIME);
     }
 

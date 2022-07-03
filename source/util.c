@@ -26,12 +26,12 @@ inline bool util_getRandomBool() // only somwhat random but who cares
     return (randomNum % 2 == 0); // return if even
 }
 
-static char util_getRandomVowel()
+static inline char util_getRandomVowel()
 {   
     return VOWELS[(randNext() % 6)];
 }
 
-static char util_getRandomConsonant()
+static inline char util_getRandomConsonant()
 {
     return CONSONANTS[(randNext() % 20)];
 }
@@ -92,7 +92,7 @@ void util_insertRandomName(char nameArr[], int arrLen)
 
 inline void util_waitSeconds(unsigned int sec) // wait for specified amount of seconds
 {
-    for (int frameCount = 0; frameCount < sec * 60; frameCount++) // seconds * FPS = total amount of frames waited
+    for (int frameCount = 0; frameCount < sec * 60; frameCount++) // seconds * FPS(60) = total amount of frames waited
     {
         VBlankIntrWait(); // waits for VBlank -> thus, 1 frame per iteration
     }

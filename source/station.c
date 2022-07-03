@@ -15,7 +15,41 @@ const u8 POLICE_MAX_CHANCE = 50;
 const u8 PIRATES_MIN_CHANCE = 0;
 const u8 PIRATES_MAX_CHANCE = 80;
 
-const u16 MAX_STATION_NUM = 20;
+const u16 MAX_STATION_NUM = 1;
+
+static void station_fillInfo(Station *station) // generates random name, commodity supply and encounter chances
+{
+    util_insertRandomName(station->name, 8); // insert a random name with a max length of 8 chars
+
+    station->hasPirates = (util_getRandomBool && util_getRandomBool); // two coinflips = 25% chance -> every 4th station will have chance of pirate encounter
+    if (station->hasPirates)
+    {
+        station->chancePirateEncounter = util_getRandomInRange(PIRATES_MIN_CHANCE, PIRATES_MAX_CHANCE); // pick chance from PIRATES_MIN_CHANCE to PIRATE_MAX_CHANCE
+    }
+    else
+    {
+        // station->chancePirateEncounter = 0; // no chance of pirates at all
+    }
+    station->chancePoliceEncounter = util_getRandomInRange(POLICE_MIN_CHANCE, POLICE_MAX_CHANCE + 1);
+    // every station has at least *some* level of police presence, so a chance is always calculated
+
+    int numCommodities = util_getRandomInRange(3, NUM_COMMODITY_TYPES); // choose random number between 2 and the max amount of commodity types
+
+    for (int i = 0; i < 10; i++)
+    {
+        (station->stationSupply)[i].item = commodity_getCommodity(util_getRandomInRange(0, NUM_COMMODITY_TYPES)); // TODO setters for expressions like this
+        // for every element of the stationSupply array choose one random commodity type
+        (station->stationSupply)[i].quantity = util_getRandomInRange(1, MAX_COMMODITY_QUANTITY); // pick a random quantity
+        commodity_applyFluctuation(&(station->stationSupply)[i].item, MAX_COMMODITY_FLUX); // apply fluctuation
+    }
+}
+
+// sets the station's position to two given coordinates
+static void station_setPosition(Station *station, int xPos, int yPos)
+{
+    station->xPos = xPos;
+    station->yPos = yPos;
+}
 
 // initializes a given array of stations
 void station_initStationArr(Station stationArr[])
@@ -43,39 +77,6 @@ void station_initStationArr(Station stationArr[])
         
         station_setPosition(&stationArr[i], x, y); // set station position to calculated value
     }
-}
-
-void station_fillInfo(Station *station) // generates random name, commodity supply and encounter chances
-{
-    util_insertRandomName(station->name, util_getRandomInRange(2, 9)); // insert a random name with a max length of 8 chars
-
-    station->hasPirates = (util_getRandomBool && util_getRandomBool); // two coinflips = 25% chance -> every 4th station will have chance of pirate encounter
-    if (station->hasPirates)
-    {
-        station->chancePirateEncounter = util_getRandomInRange(5, 101); // pick chance from PIRATES_MIN_CHANCE to PIRATE_MAX_CHANCE
-    }
-    else
-    {
-        station->chancePirateEncounter = 0; // no chance of pirates at all
-    }
-    station->chancePoliceEncounter = util_getRandomInRange(POLICE_MIN_CHANCE, POLICE_MAX_CHANCE + 1);
-    // every station has at least *some* level of police presence, so a chance is always calculated
-
-    int numCommodities = util_getRandomInRange(3, NUM_COMMODITY_TYPES); // choose random number between 2 and the max amount of commodity types
-
-    for (int i = 0; i < 10; i++)
-    {
-        (station->stationSupply)[i].item = commodity_getCommodity(util_getRandomInRange(0, NUM_COMMODITY_TYPES)); // TODO setters for expressions like this
-        // for every element of the stationSupply array choose one random commodity type
-        (station->stationSupply)[i].quantity = util_getRandomInRange(1, MAX_COMMODITY_QUANTITY); // pick a random quantity
-        commodity_applyFluctuation(&(station->stationSupply)[i].item, MAX_COMMODITY_FLUX);
-    }
-}
-
-void station_setPosition(Station *station, int xPos, int yPos)
-{
-    station->xPos = xPos;
-    station->yPos = yPos;
 }
 
 inline bool station_encounteredPolice(Station arrivalStation) // TODO maybe change chances depending on cargo hold of player
