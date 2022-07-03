@@ -16,6 +16,8 @@ void-trader
         source/station.c include/station.h
     #commodity
         source/commodity.c include/commodity.h
+    #player
+        source/player.c include/player.h
     #util
         source/util.c include/util.h
     

@@ -15,8 +15,10 @@ typedef struct stock
     u16 quantity;
 } Stock;
 
+extern const u8 NUM_COMMODITY_TYPES;
+
 Commodity commodity_getCommodity(u8 commodityId);
-void commodity_applyFluctuation(Commodity *commodity, u16 minChange, u16 maxChange);
+void commodity_applyFluctuation(Commodity *commodity, u8 maxFluxPercentage);
 void commodity_setPrice(Commodity *commodity, u16 newPrice);
 
 #endif

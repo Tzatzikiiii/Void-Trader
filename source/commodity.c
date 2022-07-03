@@ -7,7 +7,7 @@
 #include "commodity.h"
 // ------------------------------------------------------------- includes
 
-const u8 COMMODITY_NUM = 39;
+const u8 NUM_COMMODITY_TYPES = 39;
 
 const char *COMMODITY_NAMES[39] = {
     "Medicine", "Optics", "Conductors", "Gears", "Hydraulics", "Tires", "Tools", "Batteries", // technology 0-7
@@ -29,16 +29,16 @@ const u16 COMMODITY_PRICES[39] = {
 };
 
 Commodity commodity_getCommodity(u8 commodityId)
-{   
+{
     Commodity newCommodity;
 
-    if (commodityId < 0 || commodityId >= COMMODITY_NUM)
+    if (commodityId < 0 || commodityId >= NUM_COMMODITY_TYPES)
     {
         commodityId = util_getRandomInRange(0, 40);
     }
-    
+
     newCommodity.ID = commodityId;
-    
+
     if (commodityId >= 8 && commodityId <= 11)
     {
         newCommodity.isIllegal = true; // illegal if contraband
@@ -54,12 +54,17 @@ Commodity commodity_getCommodity(u8 commodityId)
     return newCommodity;
 }
 
-void commodity_applyFluctuation(Commodity *commodity, u16 minChange, u16 maxChange) // applies positive or negative price fluctuation within two given absolute values
+void commodity_applyFluctuation(Commodity *commodity, u8 maxFluxPercentage) // applies positive or negative price fluctuation within given percentage
 {
-    s16 fluctuation = util_getRandomInRange(minChange, maxChange); // signed 16-bit integer to allow for both positive and negative changes
-    if (!util_getRandomBool)
-    {                           // coin flip
-        commodity->price *= -1; // flip int sign
+
+    u32 fluctuation = util_getRandomInRange(0, maxFluxPercentage); // pick random fluctuation percentage between 0 and max
+    fluctuation = maxFluxPercentage * (commodity->price);
+    fluctuation /= 100;
+    (commodity->price); // signed 16-bit integer to allow for both positive and negative changes
+
+    if (!util_getRandomBool) // coin flip
+    {
+        fluctuation *= -1; // flip sign
     }
     commodity->price += fluctuation; // apply change to commodity price
 }
