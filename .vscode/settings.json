@@ -6,6 +6,8 @@
         "stdio.h": "c",
         "commodity.h": "c",
         "typeinfo": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "player.h": "c",
+        "station.h": "c"
     }
 }
